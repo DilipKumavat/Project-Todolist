@@ -4,12 +4,12 @@ import "./../styles/App.css";
 import { useLocation, useHistory } from "react-router-dom";
 import { logout } from "../API/Auth";
 import { Button, Container, Form, Row, Col, Navbar } from "react-bootstrap";
-import { addTodo, deleteTodo,editTodo,fetchTodo } from "../API/ApiEndPoint";
+import { addTodo, deleteTodo, editTodo, fetchTodo } from "../API/ApiEndPoint";
 
 export default function TodoList(props) {
   const [itemArray, setItemArray] = useState([]);
   const [newItem, setnewItem] = useState("");
-  const [err,setErr] = useState("");
+  const [err, setErr] = useState("");
 
   const Location = useLocation();
   const History = useHistory();
@@ -18,18 +18,16 @@ export default function TodoList(props) {
     setnewItem(evt.target.value);
   };
 
-  const onsuccess = async()=>{
+  const onsuccess = async () => {
     const getTodos = await fetchTodo();
     setItemArray(getTodos);
-  }
+  };
 
-  const onerror = async()=>{
-    
-  }
+  const onerror = async () => {};
 
   const addItem = () => {
     // setItemArray(addTodo(newItem, itemArray));
-    addTodo(newItem,onsuccess);
+    addTodo(newItem, onsuccess);
     setnewItem("");
   };
   const deleteHandeler = (index) => {
@@ -38,17 +36,13 @@ export default function TodoList(props) {
   };
   const editHandeler = (editedval, index) => {
     const idToEdit = itemArray[index]._id;
-    console.log(idToEdit,"edit id",index);
-    editTodo(editedval,idToEdit,onsuccess);
-    
+    editTodo(editedval, idToEdit, onsuccess);
   };
 
-  useEffect( async () => {
-    
+  useEffect(async () => {
+    const getAllTodos = await fetchTodo();
 
-      const getAllTodos = await fetchTodo();
-
-      setItemArray(getAllTodos);
+    setItemArray(getAllTodos);
   }, [fetchTodo]);
 
   return (
@@ -66,7 +60,7 @@ export default function TodoList(props) {
             id="task"
             onChange={getValue}
             value={newItem}
-            placeholder="Add item"
+            placeholder="Add New Todo"
           />
         </Col>
         <Col>

@@ -1,9 +1,14 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./../styles/App.css";
-import { Card, Button, FloatingLabel, Form, CardColumns } from "react-bootstrap";
+import {
+  Card,
+  Button,
+  FloatingLabel,
+  Form,
+  CardColumns,
+} from "react-bootstrap";
 
 function ListItem(props) {
-  
   const [editMode, seteditMode] = useState(false);
   const [editItem, setEditItem] = useState("");
   const openEditMode = () => {
@@ -19,15 +24,14 @@ function ListItem(props) {
 
   useEffect(() => {
     setEditItem(props.item.task);
-  }, [props.item.task])
+  }, [props.item.task]);
 
   return (
     <div className="list">
       {editMode ? (
-        
         <CardColumns>
           <Card className="w-100">
-            <Card.Header as="h5">Task count : {props.idx +1}</Card.Header>
+            <Card.Header as="h5">Task count : {props.idx + 1}</Card.Header>
             <Card.Body className="w-100">
               <Card.Title>
                 <Form.Control
@@ -43,18 +47,16 @@ function ListItem(props) {
                 variant="primary"
                 size="sm"
                 onClick={saveNewItem}
-            disabled={editItem.trim().length === 0}
+                disabled={editItem.trim().length === 0}
               >
                 Save Task
               </Button>
-           
             </Card.Body>
-        
           </Card>
-          </CardColumns>
+        </CardColumns>
       ) : (
         <CardColumns>
-          <Card  className="mb-3 w-100">
+          <Card className="mb-3 w-100">
             <Card.Header as="h5">Task count : {props.idx + 1}</Card.Header>
             <Card.Body className="w-100">
               <Card.Title>{props.item.task}</Card.Title>
@@ -64,14 +66,14 @@ function ListItem(props) {
               <Button
                 variant="primary"
                 size="sm"
-                className = "ml-3"
+                className="ml-3"
                 onClick={() => props.deleteHandeler(props.idx)}
               >
                 Delete Task
               </Button>
             </Card.Body>
           </Card>
-          </CardColumns>
+        </CardColumns>
       )}
     </div>
   );
