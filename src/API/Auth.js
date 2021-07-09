@@ -1,4 +1,4 @@
-export const Api = (history, formValue, path,onerror) => {
+export const Api = (history, formValue, path, onerror) => {
   fetch(`http://localhost:9999/${path}`, {
     method: "POST",
     body: JSON.stringify(formValue),
@@ -9,12 +9,13 @@ export const Api = (history, formValue, path,onerror) => {
   })
     .then(async (res) => {
       if (res.status > 205) {
-
+        
         const msg = await res.json();
-        console.log(msg,"before throw");
+        onerror(msg);
         throw new Error(msg);
+      } else {
+        return res.json();
       }
-      return await res.json();
     })
     .then((response) => {
       console.log(response);
@@ -23,7 +24,9 @@ export const Api = (history, formValue, path,onerror) => {
         state: response,
       });
     })
-    .catch((err) =>{ console.log({...err},"after throw"); });
+    .catch((err) => {
+      
+    });
 };
 
 export const logout = (history) => {
@@ -43,6 +46,3 @@ export const logout = (history) => {
       });
     });
 };
-
-
-
