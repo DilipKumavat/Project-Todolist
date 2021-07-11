@@ -1,0 +1,45 @@
+<Col md={{ span: 6, offset: 3 }}>
+          <Form.Control
+            as="textarea"
+            id="task"
+            onChange={getValue}
+            value={newItem}
+            placeholder="Add New Todo"
+          />
+        </Col>
+
+        <Button
+            id="btn"
+            onClick={addItem}
+            block
+            disabled={newItem.trim().length === 0}
+          >
+            Add New Todo
+          </Button>
+
+
+          <CardColumns>
+          <Card className="w-100">
+            <Card.Header as="h5">Task count : {props.idx}</Card.Header>
+            <Card.Body className="w-100">
+              <Card.Title>
+                <Form.Control
+                  as="textarea"
+                  placeholder="Leave a comment here"
+                  onChange={setBackItem}
+                  value={editItem}
+                >
+                  {editItem}
+                </Form.Control>
+              </Card.Title>
+              <Button
+                variant="primary"
+                size="sm"
+                onClick={saveNewItem}
+                disabled={editItem.trim().length === 0}
+              >
+                Save Task
+              </Button>
+            </Card.Body>
+          </Card>
+        </CardColumns>

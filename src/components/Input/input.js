@@ -1,5 +1,3 @@
-import React from "react";
-
 const Input = [
   {
     type: "text",
@@ -18,6 +16,8 @@ const Input = [
     name: "mobile",
     placeholder: "Enter Your Mobile",
     isSignupPage: false,
+    maxLength :"10",
+    minLength : "10"
   },
   {
     type: "password",

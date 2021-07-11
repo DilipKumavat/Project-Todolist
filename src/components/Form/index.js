@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from "react";
 import { Api } from "../../API/Auth";
-import { useHistory, Link, useLocation } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { Form, Col, Button, Container, Row } from "react-bootstrap";
 import Input from "../Input/input.js";
 import PasswordStrength from "../passwordStrengthIndicator";
@@ -83,9 +83,9 @@ const GeneralForm = (props) => {
         </Col>
       </Row>
       <Form onSubmit={LoginOrSignUp}>
-        {Input.map((obj) => {
+        {Input.map((obj,idx) => {
           return isSignupPage || !obj.isSignupPage ? (
-            <Row className="mt-3" className="justify-content-md-center">
+            <Row className="mt-3" className="justify-content-md-center" key={idx}>
               <Col md="6">
                 <Form.Group>
                   <Form.Row>
@@ -97,6 +97,8 @@ const GeneralForm = (props) => {
                         placeholder={obj.placeholder}
                         value={formValue[obj.name]}
                         onChange={handleChange}
+                        {...obj.minLength}
+                        {...obj.maxLength}
                       />
                     </Col>
                   </Form.Row>

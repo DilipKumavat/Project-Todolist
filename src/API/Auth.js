@@ -18,7 +18,6 @@ export const Api = (history, formValue, path, onerror) => {
       }
     })
     .then((response) => {
-      console.log(response);
       history.push({
         pathname: "/todolist",
         state: response,

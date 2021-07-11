@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import LoginPage from './Pages/Login';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 

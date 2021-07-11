@@ -1,8 +1,8 @@
-export const addTodo = async (todo, onsuccess) => {
+export const addTodo = async (todo,priority,onsuccess) => {
   
   await fetch("http://localhost:9999/todo", {
     method: "POST",
-    body: JSON.stringify({ task: todo }),
+    body: JSON.stringify({ task: todo,priority }),
     headers: {
       "content-type": "application/json",
     },
@@ -17,7 +17,7 @@ export const addTodo = async (todo, onsuccess) => {
 export const deleteTodo = async (idtoDelete, onsuccess) => {
   
 
-  const finalArray = await fetch(`http://localhost:9999/todo/${idtoDelete}`, {
+   await fetch(`http://localhost:9999/todo/${idtoDelete}`, {
     method: "DELETE",
     credentials: "include",
   }).then((r) => {
@@ -25,7 +25,7 @@ export const deleteTodo = async (idtoDelete, onsuccess) => {
   });
 };
 
-export const editTodo = (value, idToEdit, onsuccess) => {
+export const editTodo = (value,priority, idToEdit, onsuccess) => {
   
 
   fetch(`http://localhost:9999/todo/${idToEdit}`, {

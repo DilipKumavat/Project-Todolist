@@ -1,0 +1,18 @@
+.searchResult {
+  position: absolute;
+  top: 85%;
+  left: 72.8%;
+  width: 14%;
+  background-color: #f8f9fa;
+  color: #5e81a5;
+  border-radius: 5%;
+  z-index: 10;
+}
+.searchResult ul{
+    cursor: pointer !important;
+}
+
+.navbar {
+  position: relative;
+}
+

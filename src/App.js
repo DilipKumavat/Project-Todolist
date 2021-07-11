@@ -1,21 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import routes from "./Routes";
 import {
   BrowserRouter,
   Switch,
   Route,
-  Link,
-  useHistory,
-  useLocation,
   Redirect,
 } from "react-router-dom";
-import LoginPage from "./Pages/Login";
 
 const App = () => {
-  const history = useHistory();
-  console.log(history, "history");
-
-  
+   
   return (
     <BrowserRouter>
       <div>
