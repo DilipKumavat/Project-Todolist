@@ -1,8 +1,8 @@
-export const addTodo = async (todo,priority,onsuccess) => {
-  
+export const addTodo = async (todo,priority,startDateOfTodo,endDateOfTodo,onsuccess) => {
+  console.log(startDateOfTodo,endDateOfTodo);
   await fetch("http://localhost:9999/todo", {
     method: "POST",
-    body: JSON.stringify({ task: todo,priority }),
+    body: JSON.stringify({ task: todo,priority,startDateOfTodo,endDateOfTodo }),
     headers: {
       "content-type": "application/json",
     },
@@ -30,7 +30,7 @@ export const editTodo = (value,priority, idToEdit, onsuccess) => {
 
   fetch(`http://localhost:9999/todo/${idToEdit}`, {
     method: "PUT",
-    body: JSON.stringify({ task: value }),
+    body: JSON.stringify({ task: value ,priority:priority}),
     headers: {
       "content-type": "application/json",
     },

@@ -5,7 +5,8 @@ import DeleteModal from "./DeleteModal/deletemodal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TodoModal from "./TodoModal";
 function ListItem(props) {
-  const [editMode, seteditMode] = useState(false);
+  const {highlight,highlightIndex,calendar} = props;
+  const [editMode, seteditMode] = useState(props.editMode);
   const [editItem, setEditItem] = useState("");
   const [callModal, setcallModal] = useState(false);
   const hideModal = () => {
@@ -30,20 +31,23 @@ function ListItem(props) {
 
   return (
     <div className="list">
+      
       {editMode ? (
         <TodoModal
         show={editMode}
         onHide={() => seteditMode(false)}
         addItem={saveNewItem}
-        newItem={props.item.task}
+        todoitem={props.item.task}
         priority={props.priority.key}
         priorityObj={props.priorityObj}
+        startDate={props.item.startDateOfTodo}
+        endDate={props.item.endDateOfTodo}
         />
       ) : (
-        <CardColumns>
-          <Card className="mb-3 w-100">
+        <>
+          <Card className="mb-3 w-100" style={(highlight && highlightIndex === props.idx) ? {background : "#dde1e3"}: null}>
             <Card.Header as="h5">
-              Task count : {props.idx}{" "}
+              Task count : {Math.floor(props.idx)}{" "}
               {
                 <FontAwesomeIcon
                   icon={props.priority.icon}
@@ -74,7 +78,7 @@ function ListItem(props) {
               ) : null}
             </Card.Body>
           </Card>
-        </CardColumns>
+        </>
       )}
     </div>
   );
